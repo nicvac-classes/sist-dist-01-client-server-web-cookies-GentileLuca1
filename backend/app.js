@@ -24,7 +24,12 @@ app.get('/', (req, res) => {
 app.post('/greet', (req, res) => {
     const name = req.body.name;
     res.cookie('name', name, { maxAge: 24 * 60 * 60 * 1000 }); 
-    res.render('greet', { name: name });
+    res.render('greet', { message: 'Benvenuto', name: name });
+});
+
+app.get('/logout', (req, res) => {
+    res.clearCookie('name'); // Cancella il cookie chiamato "name"
+    res.redirect('/');       // Reindirizza alla home page
 });
 
 const PORT = 3000;
